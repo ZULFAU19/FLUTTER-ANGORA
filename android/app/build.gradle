@@ -1,0 +1,46 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.appzulfa"
+    compileSdkVersion 33 // Tetapkan secara eksplisit
+    ndkVersion = flutter.ndkVersion // Tetap gunakan properti dari Flutter
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId "com.example.appzulfa"
+        minSdkVersion 21 // Tetapkan secara eksplisit
+        targetSdkVersion 33 // Tetapkan secara eksplisit
+        versionCode 1 // Tetapkan nilai versi
+        versionName "1.0" // Tetapkan nama versi
+    }
+
+    buildTypes {
+        debug {
+            packagingOptions {
+                jniLibs.useLegacyPackaging = true // Memastikan output APK dapat ditemukan
+            }
+        }
+        release {
+            signingConfig signingConfigs.debug // Gunakan debug signing sementara
+            minifyEnabled false // Nonaktifkan minifikasi untuk debugging
+            shrinkResources false // Nonaktifkan pengecilan resource
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
